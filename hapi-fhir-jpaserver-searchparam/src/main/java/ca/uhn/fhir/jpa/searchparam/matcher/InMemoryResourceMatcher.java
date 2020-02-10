@@ -4,7 +4,7 @@ package ca.uhn.fhir.jpa.searchparam.matcher;
  * #%L
  * HAPI FHIR Search Parameters
  * %%
- * Copyright (C) 2014 - 2019 University Health Network
+ * Copyright (C) 2014 - 2020 University Health Network
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ import ca.uhn.fhir.rest.param.StringParam;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
 import ca.uhn.fhir.util.MetaUtil;
 import ca.uhn.fhir.util.UrlUtil;
+import org.hl7.fhir.dstu3.model.Location;
 import org.hl7.fhir.instance.model.api.IAnyResource;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.instance.model.api.IIdType;
@@ -87,6 +88,9 @@ public class InMemoryResourceMatcher {
 		searchParameterMap.clean();
 		if (searchParameterMap.getLastUpdated() != null) {
 			return InMemoryMatchResult.unsupportedFromParameterAndReason(Constants.PARAM_LASTUPDATED, InMemoryMatchResult.STANDARD_PARAMETER);
+		}
+		if (searchParameterMap.containsKey(Location.SP_NEAR)) {
+			return InMemoryMatchResult.unsupportedFromReason(InMemoryMatchResult.LOCATION_NEAR);
 		}
 
 		for (Map.Entry<String, List<List<IQueryParameterType>>> entry : searchParameterMap.entrySet()) {

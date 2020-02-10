@@ -4,7 +4,7 @@ package ca.uhn.fhir.jpa.model.entity;
  * #%L
  * HAPI FHIR Model
  * %%
- * Copyright (C) 2014 - 2019 University Health Network
+ * Copyright (C) 2014 - 2020 University Health Network
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,12 +51,6 @@ public class ResourceTable extends BaseHasResource implements Serializable, IBas
 	private static final int MAX_LANGUAGE_LENGTH = 20;
 	private static final int MAX_PROFILE_LENGTH = 200;
 	private static final long serialVersionUID = 1L;
-
-//	@Transient
-//	private transient byte[] myResource;
-//
-//	@Transient
-//	private transient ResourceEncodingEnum myEncoding;
 
 	/**
 	 * Holds the narrative text only - Used for Fulltext searching but not directly stored in the DB

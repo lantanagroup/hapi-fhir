@@ -4,7 +4,7 @@ package ca.uhn.fhir.jpa.migrate.taskdef;
  * #%L
  * HAPI FHIR JPA Server - Migration
  * %%
- * Copyright (C) 2014 - 2019 University Health Network
+ * Copyright (C) 2014 - 2020 University Health Network
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,22 +68,13 @@ public class InitializeSchemaTask extends BaseTask<InitializeSchemaTask> {
 	}
 
 	@Override
-	public boolean equals(Object theO) {
-		if (this == theO) return true;
-
-		if (theO == null || getClass() != theO.getClass()) return false;
-
-		InitializeSchemaTask that = (InitializeSchemaTask) theO;
-
-		return new EqualsBuilder()
-			.append(mySchemaInitializationProvider, that.mySchemaInitializationProvider)
-			.isEquals();
+	protected void generateEquals(EqualsBuilder theBuilder, BaseTask<InitializeSchemaTask> theOtherObject) {
+		InitializeSchemaTask otherObject = (InitializeSchemaTask) theOtherObject;
+		theBuilder.append(mySchemaInitializationProvider, otherObject.mySchemaInitializationProvider);
 	}
 
 	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(17, 37)
-			.append(mySchemaInitializationProvider)
-			.toHashCode();
+	protected void generateHashCode(HashCodeBuilder theBuilder) {
+		theBuilder.append(mySchemaInitializationProvider);
 	}
 }

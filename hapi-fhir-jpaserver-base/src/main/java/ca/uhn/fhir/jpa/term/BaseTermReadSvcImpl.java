@@ -4,7 +4,7 @@ package ca.uhn.fhir.jpa.term;
  * #%L
  * HAPI FHIR JPA Server
  * %%
- * Copyright (C) 2014 - 2019 University Health Network
+ * Copyright (C) 2014 - 2020 University Health Network
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1414,7 +1414,6 @@ public abstract class BaseTermReadSvcImpl implements ITermReadSvc, ApplicationCo
 						TermConceptMapGroupElement termConceptMapGroupElement;
 						for (ConceptMap.SourceElementComponent element : group.getElement()) {
 							if (isBlank(element.getCode())) {
-								// FIXME: JA - send this to an interceptor message so it can be output
 								continue;
 							}
 							termConceptMapGroupElement = new TermConceptMapGroupElement();
